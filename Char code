@@ -2,20 +2,35 @@ extends CharacterBody2D
 
 const speed = 300
 const Jump_Velocity = -500
+var health = 3
+ 
 
+func wait(s):
+	await get_tree().create_timer(s).timeout
+
+#Prevd is a failed var
 func anims(direction):
+	var prevd = direction
 	#if direction == -1 and velocity.y > 0:
 	#	$Sprite2D/AnimatedSprite2D.play("jump_left")
 	#elif direction == 1 and velocity.y > 0:
 	#	$Sprite2D/AnimatedSprite2D.play("jump_right")
 	if direction == 1:
+		prevd = 1
 		$Sprite2D/AnimatedSprite2D.play("walk_right")
 	elif direction == -1:
+		prevd = -1
 		$Sprite2D/AnimatedSprite2D.play("walk_left")
 	elif velocity.y >= 1:
 		$Sprite2D/AnimatedSprite2D.play("fall")
-	else:
-		$Sprite2D/AnimatedSprite2D.play("idle")
+#	else:
+		if prevd == 1:
+			$Sprite2D/AnimatedSprite2D.play("jump_right")
+		elif prevd == -1:
+			$Sprite2D/AnimatedSprite2D.play("jump_left")
+		else:
+			$Sprite2D/AnimatedSprite2D.play("idle")
+		#$Sprite2D/AnimatedSprite2D.play("idle")
 
 
 func _physics_process(delta: float) -> void:
@@ -28,10 +43,24 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * speed
-		print(direction)
+		#print(direction)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 			
-	move_and_slide()
 	anims(direction)
-	
+	attacks()
+	move_and_slide()
+
+@export var dash = 1
+
+
+func attacks():
+	if not is_on_floor():
+		if Input.is_action_just_pressed("W"):
+			var posdash1 = position.x
+			velocity.x *= dash
+			var posdash2 = position.x
+			var dashdis = posdash2 - posdash1
+			$Area2D.size = dashdis
+			$Area2D.centre = dashdis / 2                       
+			
