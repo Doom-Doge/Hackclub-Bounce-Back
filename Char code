@@ -3,7 +3,6 @@ extends CharacterBody2D
 const speed = 300
 const Jump_Velocity = -500
 var health = 3
- 
 
 func wait(s):
 	await get_tree().create_timer(s).timeout
@@ -50,21 +49,30 @@ func _physics_process(delta: float) -> void:
 	anims(direction)
 	attacks()
 	move_and_slide()
+	if is_on_floor() and slamming:
+		$Area2D2/AnimatedSprite2D.position.y = $Sprite2D.position.y + 500
+		$Area2D2/AnimatedSprite2D.play("default")
+		slamming = false
 
-@export var dash = 1
-
+@export var dash = 19
+@export var slamv = 2000
+var slamming = false
 
 func attacks():
 	if not is_on_floor():
-		if Input.is_action_just_pressed("W"):
-			var posdash1 = position.x
-			print(str(posdash1) + "Posdash1")
-			velocity.x *= dash
-			var posdash2 = position.x
-			print(str(posdash2) + "Posdash2")
-			var dashdis = posdash2 - posdash1
-			$Area2D.scale.x = dashdis
-			$Area2D.position.x = dashdis / 2                       
-			print($Area2D.scale.x)
-			print(dashdis)
-			print($Area2D.scale.y)
+#		if Input.is_action_just_pressed("W"):
+#			var posdash1 = position.x
+#			print(str(posdash1) + "Posdash1")
+#			velocity.x *= dash
+#			var posdash2 = position.x
+#			print(str(posdash2) + "Posdash2")
+#			var dashdis = posdash2 - posdash1
+#			$Area2D.scale.x = dashdis
+#			$Area2D.position.x = dashdis / 2                       
+#			print($Area2D.scale.x)
+#			print(dashdis)
+#			print($Area2D.scale.y)
+		if Input.is_action_just_pressed("S"):
+			slamming = true
+			velocity.y = slamv
+			
