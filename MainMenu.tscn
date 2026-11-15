@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bfa1fhmyumft1"]
+
+[ext_resource type="Texture2D" uid="uid://byud8r4cn8m85" path="res://Images/jungle_bg.png" id="1_h7a2f"]
+[ext_resource type="FontFile" uid="uid://dtmmjgif2y2q6" path="res://SuperFriend-lxK5X.ttf" id="2_qoqlk"]
+[ext_resource type="Script" uid="uid://gu1fu3102ygl" path="res://button.gd" id="3_iwfq2"]
+[ext_resource type="AudioStream" uid="uid://w1f5r0x7ft2m" path="res://Scenes/arctsound-fantasy-cinematic-intro-.mp3" id="4_qoqlk"]
+
+[node name="Node2D" type="Node2D" unique_id=1435003658]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1016045603]
+offset_right = 1155.0
+offset_bottom = 397.0
+color = Color(0, 0, 0, 1)
+
+[node name="JungleBg" type="Sprite2D" parent="." unique_id=1358454512]
+position = Vector2(581, 333)
+scale = Vector2(0.6046875, 0.6134259)
+texture = ExtResource("1_h7a2f")
+
+[node name="Control" type="Control" parent="." unique_id=2109647402]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control" unique_id=1626165344]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 362.0
+offset_right = 684.0
+offset_bottom = 453.0
+theme_override_fonts/font = ExtResource("2_qoqlk")
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+script = ExtResource("3_iwfq2")
+
+[node name="Label" type="Label" parent="Control" unique_id=1077588711]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 229.0
+offset_right = 772.0
+offset_bottom = 302.0
+theme_override_fonts/font = ExtResource("2_qoqlk")
+theme_override_font_sizes/font_size = 60
+text = "REBOUND RAVINE"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=976025104]
+stream = ExtResource("4_qoqlk")
+autoplay = true
+
+[connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]
