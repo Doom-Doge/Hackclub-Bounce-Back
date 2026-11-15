@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bfa1fhmyumft1"]
 
 [ext_resource type="Texture2D" uid="uid://byud8r4cn8m85" path="res://Images/jungle_bg.png" id="1_h7a2f"]
-[ext_resource type="FontFile" uid="uid://dtmmjgif2y2q6" path="res://SuperFriend-lxK5X.ttf" id="2_qoqlk"]
-[ext_resource type="Script" uid="uid://gu1fu3102ygl" path="res://button.gd" id="3_iwfq2"]
-[ext_resource type="AudioStream" uid="uid://w1f5r0x7ft2m" path="res://Scenes/arctsound-fantasy-cinematic-intro-.mp3" id="4_qoqlk"]
+[ext_resource type="FontFile" uid="uid://cm6ax7xfhhts3" path="res://SuperFriend-lxK5X.ttf" id="2_qoqlk"]
+[ext_resource type="Script" uid="uid://4srj45ijk58c" path="res://button.gd" id="3_iwfq2"]
+[ext_resource type="AudioStream" uid="uid://14wbktvff348" path="res://Scenes/arctsound-fantasy-cinematic-intro-.mp3" id="4_qoqlk"]
 
 [node name="Node2D" type="Node2D" unique_id=1435003658]
 
@@ -43,6 +43,19 @@ offset_bottom = 302.0
 theme_override_fonts/font = ExtResource("2_qoqlk")
 theme_override_font_sizes/font_size = 60
 text = "REBOUND RAVINE"
+
+[node name="Label2" type="Label" parent="Control" unique_id=2043543541]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 489.0
+offset_right = 684.0
+offset_bottom = 570.0
+theme_override_fonts/font = ExtResource("2_qoqlk")
+theme_override_font_sizes/font_size = 19
+text = "You have fallen,
+Can you climb your way out?"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=976025104]
 stream = ExtResource("4_qoqlk")
